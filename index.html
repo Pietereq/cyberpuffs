@@ -99,9 +99,46 @@
       text-align: center;
       width: calc(100% - 30px);
     }
+
+    
+
+    /* ====== POPUP ====== */
+    #promo-popup {
+      position: fixed;
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%);
+      background: #222;
+      color: #fff;
+      padding: 20px;
+      border-radius: 10px;
+      text-align: center;
+      width: 300px;
+      box-shadow: 0 4px 20px rgba(0,0,0,0.6);
+      display: none;
+      z-index: 10000;
+    }
+    #promo-popup h3 {
+      margin: 0 0 15px;
+      color: #0ff;
+    }
+    #close-popup {
+      background: #0ff;
+      color: #000;
+      border: none;
+      padding: 8px 15px;
+      border-radius: 6px;
+      cursor: pointer;
+      font-weight: bold;
+    }
   </style>
 </head>
 <body>
+
+
+  <div class="product-header">
+    
+    </div>
 
   <!-- Wiek -->
   <div id="age-gate">
@@ -109,29 +146,36 @@
     <button id="accept-button">Akceptuję</button>
   </div>
 
+  <!-- Popup -->
+  <div id="promo-popup">
+    <h3>PROMOCJA 🎉</h3>
+    <p>20% taniej do <b>31.08 23:59</b></p>
+    <button id="close-popup">Zamknij</button>
+  </div>
+
   <div class="container">
-    <div class="promo">🔥 Wstaw swoje zamówienie na relacje i otrzymaj promocje na kolejne 🔥</div>
+    <div class="promo">OSTATNIE SZTUKI</div>
 
     <center><h1>Cyber Puffs</h1></center>
 
     <div class="products">
       <div class="product">
-        <div class="product-header">BLUEBERRY ICE - 40zł</div>
+        <div class="product-header">BLUEBERRY ICE <br><s>50zł</s> 40zł</div>
         <img src="bi.png" alt="Blueberry Ice">
         <a class="order-button" href="https://www.instagram.com/cyber.puffs" target="_blank">Zamów przez Instagram</a>
       </div>
       <div class="product">
-        <div class="product-header">LEMON FRUIT - 40zł</div>
+        <div class="product-header">LEMON FRUIT <br><s>50zł</s> 40zł</div>
         <img src="lf.png" alt="Lemon Fruit">
         <a class="order-button" href="https://www.instagram.com/cyber.puffs" target="_blank">Zamów przez Instagram</a>
       </div>
       <div class="product">
-        <div class="product-header">STRAWBERRY GUAVA - 40zł</div>
+        <div class="product-header">STRAWBERRY GUAVA <br><s>50zł</s> 40zł</div>
         <img src="sg.png" alt="Strawberry Guava">
         <a class="order-button" href="https://www.instagram.com/cyber.puffs" target="_blank">Zamów przez Instagram</a>
       </div>
       <div class="product">
-        <div class="product-header">LYCHEE ICE - 40zł</div>
+        <div class="product-header">LYCHEE ICE <br><s>50zł</s> 40zł</div>
         <img src="li.png" alt="Lychee Ice">
         <a class="order-button" href="https://www.instagram.com/cyber.puffs" target="_blank">Zamów przez Instagram</a>
       </div>
@@ -146,10 +190,15 @@
 
       $('#accept-button').click(function () {
         sessionStorage.setItem('ageVerified', 'true');
-        $('#age-gate').fadeOut();
+        $('#age-gate').fadeOut(function(){
+          $('#promo-popup').fadeIn();
+        });
+      });
+
+      $('#close-popup').click(function(){
+        $('#promo-popup').fadeOut();
       });
     });
   </script>
 </body>
 </html>
-
